@@ -19,14 +19,16 @@ const App = () => {
 
 
     return ( <
-        div > <
+        div className = 'Main' > <
         AppHeader / >
+        <
+        div className = 'SearchAndItem' >
         <
         IItemStatusFilter / >
         <
         SearchPanel / >
-
         <
+        /div> <
         TodoList todos = { todoData }
         / > < /
         div >
