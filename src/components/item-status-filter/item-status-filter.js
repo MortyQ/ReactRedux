@@ -8,11 +8,11 @@ export default class ItemStatusFilter extends Component {
             div className = 'btn-group' >
             <
             button type = 'button'
-            className = 'btn btn-info' > All < /button> <
+            className = 'btn btn-info' > Все < /button> <
             button type = 'button'
-            className = 'btn btn-outline-secondary' > Active < /button> <
+            className = 'btn btn-outline-secondary' > Активные < /button> <
             button type = 'button'
-            className = 'btn btn-outline-secondary' > Done < /button> < /
+            className = 'btn btn-outline-secondary' > Сделанные < /button> < /
             div >
         )
     }
