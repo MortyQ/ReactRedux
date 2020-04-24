@@ -19,9 +19,9 @@ export default class App extends Component {
             this.createTOdoItem('Проснуться'),
             this.createTOdoItem('Выпить Чашку кофе'),
             this.createTOdoItem('Покурить')
-
-
-        ]
+        ],
+        term: '',
+        filter: 'all',
     };
 
     createTOdoItem(label) {
@@ -96,10 +96,36 @@ export default class App extends Component {
         });
     };
 
+    onSearchChange = (term) => {
+        this.setState({ term });
+    };
+    onFilterChange = (filter) => {
+        this.setState({ filter });
+    };
 
+    search(items, term) {
+        if (term.length === 0) {
+            return items;
+        }
+
+        return items.filter((item) => {
+            return item.label.toLowerCase().indexOf(term.toLowerCase()) > -1;
+        });
+    }
+    filter(items, filter) {
+        if (filter === 'all') {
+            return items;
+        } else if (filter === 'active') {
+            return items.filter((item) => (!item.done));
+        } else if (filter === 'done') {
+            return items.filter((item) => item.done);
+        }
+    }
 
     render() {
-        const { todoData } = this.state;
+
+        const { todoData, term, filter } = this.state;
+        const visibleItem = this.filter(this.search(todoData, term), filter);
         const doneCount = todoData
             .filter((el) => el.done).length;
         const todoCount = todoData.length - doneCount;
@@ -111,12 +137,13 @@ export default class App extends Component {
             / > <
             div className = 'SearchAndItem' >
             <
-            IItemStatusFilter / >
-            <
-            SearchPanel / >
-            <
-            /div> <
-            TodoList todos = { todoData }
+            IItemStatusFilter filter = { filter }
+            onFilterChange = { this.onFilterChange }
+            / > <
+            SearchPanel onSearchChange = { this.onSearchChange }
+            / > < /
+            div > <
+            TodoList todos = { visibleItem }
             onDeleted = {
                 this.deleteItem
             }
