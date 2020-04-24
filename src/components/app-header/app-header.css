@@ -4,9 +4,14 @@
 
 .app-header h1 {
     flex-grow: 1;
+    border: 1px solid black;
+    border-radius: 30px;
+    background-color: white;
+    color: black;
+    font-family: 'Times New Roman', Times, serif;
 }
 
 .app-header h2 {
-    font-size: 1.2rem;
-    color: grey;
+    font-size: 1.8rem;
+    color: #e84393;
 }
